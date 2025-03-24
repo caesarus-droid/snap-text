@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SnapText - Upload Video</title>
+</head>
+<body>
+    <h1>Welcome to SnapText</h1>
+    <form action="{{ url_for('main.result') }}" method="POST" enctype="multipart/form-data">
+        <label>Upload Video/Audio:</label>
+        <input type="file" name="file" required>
+        <button type="submit">Transcribe</button>
+    </form>
+</body>
+</html>
