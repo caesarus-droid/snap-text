@@ -1,1 +1,47 @@
 Flask~=3.1.0
+# Flask Web Framework
+
+flask-ngrok  # For running Flask in Google Colab
+
+# Flask Utilities
+werkzeug>=3.1
+Jinja2>=3.1.2
+itsdangerous>=2.2
+click>=8.1.3
+blinker>=1.9
+MarkupSafe>=3.0.2
+
+# Whisper (OpenAI Speech Recognition)
+openai-whisper
+
+# FFmpeg for Audio Processing
+ffmpeg-python
+
+# Document Generation (Word Transcripts)
+python-docx
+
+# Ngrok for Public URL in Colab
+pyngrok
+
+# File Handling & Security
+python-dotenv  # Load environment variables from .env
+flask-dotenv  # Auto-load .env in Flask
+
+# Data Processing
+numpy
+pandas
+
+# Regex Processing
+regex
+
+# JSON Handling
+ujson  # Faster JSON parsing
+
+# Web Requests
+requests
+
+# Video Downloading (if processing YouTube videos)
+pytube  # Download YouTube videos
+
+# Async Operations (if needed)
+aiohttp
