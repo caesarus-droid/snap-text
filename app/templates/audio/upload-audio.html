@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcribe Audio - SnapText</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/upload_audio.css') }}">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Step 1: Upload Section -->
+        <div id="upload-section">
+            <h1>Upload Your Audio File</h1>
+            <p>Select an audio file to transcribe.</p>
+
+            <label class="upload-box" id="upload-box">
+                Click to Upload Audio
+                <input type="file" id="audioFile" accept="audio/*" required>
+            </label>
+            <div id="file-name" style="margin-top: 10px; font-size: 16px;"></div>
+        </div>
+
+        <!-- Step 2: Upload Progress -->
+        <div id="progress-section" class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+            <p class="progress-text" id="progress-text">Uploading...</p>
+        </div>
+
+        <!-- Step 3: Metadata Form -->
+        <form action="{{ url_for('main.upload_audio') }}" method="POST" enctype="multipart/form-data" id="metadata-form" class="metadata-form">
+            <label for="instructor_name">Instructor:</label>
+            <input type="text" name="instructor_name" id="instructor_name" placeholder="e.g., Dr. John Doe" required>
+            <hr>
+
+            <label for="course_name">Course Name:</label>
+            <input type="text" name="course_name" id="course_name" placeholder="e.g., Introduction to AI" required>
+            <hr>
+
+            <label for="course_code">Course Code:</label>
+            <input type="text" name="course_code" id="course_code" placeholder="e.g., CS101" required>
+            <hr>
+
+            <label for="transcript_topic">Topic for the Transcript:</label>
+            <input type="text" name="transcript_topic" id="transcript_topic" placeholder="e.g., Neural Networks Basics" required>
+            <hr>
+
+            <label for="audio_source">Source of the Audio:</label>
+            <input type="text" name="audio_source" id="audio_source" placeholder="e.g., Lecture Recording, Podcast, Interview" required>
+            <hr>
+
+            <label for="transcript_type">Transcript Type:</label>
+            <input type="text" name="transcript_type" id="transcript_type" placeholder="e.g., Video Lecture, Overview Video, YouTube" required>
+            <hr>
+
+            <!-- Dynamic Fields Section
+            <div class="extra-fields" id="extra-fields"></div>
+            <button type="button" onclick="addField()">+ Add More Fields</button>
+            <hr> -->
+
+            <button type="submit">Click HERE to Transcribe</button>
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/upload_audio.js') }}"></script>
+
+</body>
+</html>

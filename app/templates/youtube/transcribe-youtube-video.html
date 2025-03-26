@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcribe Video</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Upload Your Video File</h1>
+        <p>Select a video file to transcribe.</p>
+
+        <form action="{{ url_for('main.transcribe_video') }}" method="POST" enctype="multipart/form-data">
+            <label class="upload-box">
+                Click to Upload Video
+                <input type="file" name="file" accept="video/*" required>
+            </label><br>
+            <button type="submit">Transcribe Now</button>
+        </form>
+    </div>
+
+</body>
+</html>

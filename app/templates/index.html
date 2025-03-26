@@ -2,14 +2,69 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SnapText - Upload Video</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnapText - AI Transcription</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Welcome to SnapText</h1>
-    <form action="{{ url_for('main.result') }}" method="POST" enctype="multipart/form-data">
-        <label>Upload Video/Audio:</label>
-        <input type="file" name="file" required>
-        <button type="submit">Transcribe</button>
-    </form>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">
+            <a href="#" style="font-size: 1.2rem;">SnapText</a>
+        </div>
+        <div>
+            <a href="#">Home</a>
+            <a href="#features">Features</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>SnapText: Making Every Word Accessible.</h1>
+            <p>Convert speech to text in seconds with high accuracy.</p>
+        </div>
+    </div>
+
+
+
+    <!-- Features Section -->
+    <div class="features" id="features">
+        <a href="{{ url_for('main.upload_audio') }}" class="feature-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/724/724927.png" alt="Audio Icon">
+            <h2>Transcribe Audio</h2>
+            <p>Convert speech to text from audio files.</p>
+        </a>
+        <a href="{{ url_for('main.transcribe_video') }}" class="feature-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/84/84179.png" alt="Video Icon">
+            <h2>Transcribe Panopto Video</h2>
+            <p>Extract text from video files with ease.</p>
+        </a>
+        <a href="{{ url_for('main.transcribe_youtube_video') }}" class="feature-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/84/84177.png" alt="Video Icon">
+            <h2>Transcribe YouTube Video</h2>
+            <p>Extract text from video files with ease.</p>
+        </a>
+    </div>
+
+    <!-- Testimonials Section -->
+    <div class="testimonial-section" id="testimonials">
+        <h2>What Users Say</h2>
+        <p class="testimonial">"SnapText saved me hours! The accuracy is incredible!"</p>
+        <cite>- Sarah Thompson</cite>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer" id="contact">
+        <p>Contact us: <a href="mailto:support@snaptext.com" style="color: #FFD700;">support@snaptext.com</a></p>
+        <p>© 2025 SnapText. All Rights Reserved.</p>
+    </div>
+
 </body>
 </html>
