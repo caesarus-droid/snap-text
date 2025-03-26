@@ -1,12 +1,9 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 import os
 import re
-import whisper
 from flask import Blueprint, render_template, request, jsonify, send_file, current_app
 from werkzeug.utils import secure_filename
-from docx import Document
-from docx.shared import Pt
-from docx.enum.text import WD_ALIGN_PARAGRAPH
+
 
 main = Blueprint('main', __name__)
 
