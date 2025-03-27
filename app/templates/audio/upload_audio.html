@@ -86,6 +86,9 @@
                 if (xhr.status === 200) {
                     const response = JSON.parse(xhr.responseText);
                     statusText.innerText = "Upload complete!";
+                    
+                    // Redirect to metadata form
+                    window.location.href = "{{ url_for('main.metadata_form') }}?file_name=" + encodeURIComponent(response.file_name);
                 } else {
                     alert("Upload failed. Please try again.");
                 }
