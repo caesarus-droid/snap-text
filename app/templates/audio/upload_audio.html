@@ -85,7 +85,7 @@
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     const response = JSON.parse(xhr.responseText);
-                    statusText.innerText = "Upload complete!";
+                    alert("Upload complete!");
                 } else {
                     alert("Upload failed. Please try again.");
                 }
