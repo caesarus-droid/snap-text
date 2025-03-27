@@ -16,16 +16,21 @@ def create_app():
     except Exception as e:
         app.logger.error(f'Error loading .env file: {str(e)}')
 
-    # Use environment variables for sensitive configuration
+    # Create 'uploads/' directory if it doesn't exist
+    upload_folder = os.path.join(os.getcwd(), 'uploads')  # Full path to 'uploads/'
+    if not os.path.exists(upload_folder):
+        os.makedirs(upload_folder)  # Create the directory
+
+    # Configure Flask upload folder
     app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'super-secret-key')
-    app.config['UPLOAD_FOLDER'] = os.environ.get('UPLOAD_FOLDER', '/tmp')
+    app.config['UPLOAD_FOLDER'] = upload_folder  # Set the upload folder
 
     try:
         # Register Blueprints
         from .routes import main
         app.register_blueprint(main)
     except ImportError as e:
-        app.logger.error(f'Error registering blueprints: {str(e)}')
+        app.logger.error(f'Error registering blueprints: {str(e)}")
         raise
 
     return app
