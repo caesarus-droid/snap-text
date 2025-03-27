@@ -1,35 +1,41 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, flash
 import os
 import re
-from flask import Blueprint, render_template, request, jsonify, send_file, current_app
 from werkzeug.utils import secure_filename
 
 
 main = Blueprint('main', __name__)
 
+# Ensure "audio" folder exists
+UPLOAD_FOLDER = "uploads/audio"
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 @main.route('/')
 def index():
     return render_template('index.html')
 
 
+# Step 1: Upload Audio File
 @main.route('/upload-audio', methods=['GET', 'POST'])
 def upload_audio():
     if request.method == 'POST':
-        if 'audioFile' not in request.files:
-            return jsonify({"error": "No file uploaded"}), 400
+        if 'audio_file' not in request.files:
+            flash('No file selected.')
+            return redirect(request.url)
 
-        file = request.files["audioFile"]
-        if file.filename == "":
-            return jsonify({"error": "No selected file"}), 400
+        audio_file = request.files['audio_file']
+        if audio_file.filename == '':
+            flash('No selected file.')
+            return redirect(request.url)
 
-        filename = secure_filename(file.filename)
-        file_path = os.path.join(UPLOAD_FOLDER, filename)
-        file.save(file_path)
+        if audio_file:
+            file_path = os.path.join(UPLOAD_FOLDER, audio_file.filename)
+            audio_file.save(file_path)
 
-        return jsonify({"file_path": file_path})
+            flash(f"File {audio_file.filename} uploaded successfully!")
+            return redirect(url_for("main.metadata_form", filename=audio_file.filename))
 
-    return render_template('audio/upload-audio.html', methods=['GET'])
+    return render_template('audio/upload_audio.html')
 
 
 @main.route('/transcribe-video')
