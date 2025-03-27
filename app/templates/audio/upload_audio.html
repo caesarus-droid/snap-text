@@ -87,6 +87,8 @@
                     const response = JSON.parse(xhr.responseText);
                     alert("Upload complete!");
                     progressText.innerText = "Done";
+                    // Redirect to metadata form
+                    window.location.href = "{{ url_for('main.metadata_form') }})";
                 } else {
                     alert("Upload failed. Please try again.");
                 }
