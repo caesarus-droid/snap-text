@@ -86,6 +86,7 @@
                 if (xhr.status === 200) {
                     const response = JSON.parse(xhr.responseText);
                     alert("Upload complete!");
+                    progressText.innerText = "Done";
                 } else {
                     alert("Upload failed. Please try again.");
                 }
