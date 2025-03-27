@@ -18,7 +18,7 @@ def index():
 # Step 1: Upload Audio File
 @main.route('/upload_audio', methods=['GET', 'POST'])
 def upload_audio():
-    if request.methods == 'POST':
+    if request.method == 'POST':
         if 'audio_file' not in request.files:
             return jsonify({"error": "No file uploaded"}), 400
 
