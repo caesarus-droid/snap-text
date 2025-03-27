@@ -37,6 +37,34 @@ def upload_audio():
 
     return render_template('audio/upload_audio.html')
 
+# Step 2: Metadata Form
+@main.route('/metadata', methods=['GET', 'POST'])
+def metadata_form():
+    filename = request.args.get('filename')
+
+    if not filename:
+        flash("No audio file found.")
+        return redirect(url_for("main.upload_audio"))
+
+    return render_template('metadata_form.html', filename=filename)
+
+# Step 3: Process Metadata
+@main.route('/process-metadata', methods=['POST'])
+def process_metadata():
+    metadata = {
+        "filename": request.form.get("filename"),
+        "instructor_name": request.form.get("instructor_name"),
+        "course_name": request.form.get("course_name"),
+        "course_code": request.form.get("course_code"),
+        "transcript_topic": request.form.get("transcript_topic"),
+        "audio_source": request.form.get("audio_source"),
+        "transcript_type": request.form.get("transcript_type"),
+    }
+
+    print("✅ Metadata Captured:", metadata)
+    flash(f"Metadata for {metadata['filename']} saved. Transcription will start soon!")
+
+    return redirect(url_for("main.upload_audio"))  # Or go to a transcription page
 
 @main.route('/transcribe-video')
 def transcribe_video():
