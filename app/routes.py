@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, jsonify
 import os
 import re
 from werkzeug.utils import secure_filename
@@ -16,26 +16,26 @@ def index():
 
 
 # Step 1: Upload Audio File
-@main.route('/upload-audio', methods=['GET', 'POST'])
+@main.route('/upload_audio', methods=['POST'])
 def upload_audio():
-    if request.method == 'POST':
-        if 'audio_file' not in request.files:
-            flash('No file selected.')
-            return redirect(request.url)
+    if 'audio_file' not in request.files:
+        return jsonify({"error": "No file uploaded"}), 400
 
-        audio_file = request.files['audio_file']
-        if audio_file.filename == '':
-            flash('No selected file.')
-            return redirect(request.url)
+    file = request.files['audio_file']
+    if file.filename == '':
+        return jsonify({"error": "No selected file"}), 400
 
-        if audio_file:
-            file_path = os.path.join(UPLOAD_FOLDER, audio_file.filename)
-            audio_file.save(file_path)
+    # Validate audio file type
+    if not file.filename.lower().endswith(('.mp3', '.wav', '.m4a', '.flac', '.aac', '.ogg')):
+        return jsonify({"error": "Invalid file type. Please upload an audio file."}), 400
 
-            flash(f"File {audio_file.filename} uploaded successfully!")
-            return redirect(url_for("main.metadata_form", filename=audio_file.filename))
+    filepath = os.path.join(UPLOAD_FOLDER, file.filename)
+    file.save(filepath)  # Save file to Google Colab
 
-    return render_template('audio/upload_audio.html')
+    return jsonify({
+        "message": "Upload successful!",
+        "file_name": file.filename
+    })
 
 # Step 2: Metadata Form
 @main.route('/metadata', methods=['GET', 'POST'])
