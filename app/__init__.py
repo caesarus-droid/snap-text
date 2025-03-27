@@ -30,7 +30,7 @@ def create_app():
         from .routes import main
         app.register_blueprint(main)
     except ImportError as e:
-        app.logger.error(f'Error registering blueprints: {str(e)}")
+        app.logger.error(f"Error registering blueprints: {str(e)}")
         raise
 
     return app
