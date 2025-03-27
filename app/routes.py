@@ -43,12 +43,6 @@ def upload_audio():
 # Step 2: Metadata Form
 @main.route('/metadata', methods=['GET', 'POST'])
 def metadata_form():
-    filename = request.args.get('filename')
-
-    if not filename:
-        flash("No audio file found.")
-        return redirect(url_for("main.upload_audio"))
-
     return render_template('audio/metadata_form.html')
 
 # Step 3: Process Metadata
