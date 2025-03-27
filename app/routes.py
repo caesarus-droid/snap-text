@@ -18,24 +18,27 @@ def index():
 # Step 1: Upload Audio File
 @main.route('/upload_audio', methods=['GET', 'POST'])
 def upload_audio():
-    if 'audio_file' not in request.files:
-        return jsonify({"error": "No file uploaded"}), 400
+    if request.methods == 'POST':
+        if 'audio_file' not in request.files:
+            return jsonify({"error": "No file uploaded"}), 400
 
-    file = request.files['audio_file']
-    if file.filename == '':
-        return jsonify({"error": "No selected file"}), 400
+        file = request.files['audio_file']
+        if file.filename == '':
+            return jsonify({"error": "No selected file"}), 400
 
-    # Validate audio file type
-    if not file.filename.lower().endswith(('.mp3', '.wav', '.m4a', '.flac', '.aac', '.ogg')):
-        return jsonify({"error": "Invalid file type. Please upload an audio file."}), 400
+        # Validate audio file type
+        if not file.filename.lower().endswith(('.mp3', '.wav', '.m4a', '.flac', '.aac', '.ogg')):
+            return jsonify({"error": "Invalid file type. Please upload an audio file."}), 400
 
-    filepath = os.path.join(UPLOAD_FOLDER, file.filename)
-    file.save(filepath)  # Save file to Google Colab
+        filepath = os.path.join(UPLOAD_FOLDER, file.filename)
+        file.save(filepath)  # Save file to Google Colab
 
-    return jsonify({
-        "message": "Upload successful!",
-        "file_name": file.filename
-    })
+        return jsonify({
+            "message": "Upload successful!",
+            "file_name": file.filename
+        })
+
+    return render_template("audio/upload_audio.html")
 
 # Step 2: Metadata Form
 @main.route('/metadata', methods=['GET', 'POST'])
