@@ -49,7 +49,7 @@ def metadata_form():
         flash("No audio file found.")
         return redirect(url_for("main.upload_audio"))
 
-    return render_template('audio/metadata_form.html', filename=filename)
+    return render_template('audio/metadata_form.html')
 
 # Step 3: Process Metadata
 @main.route('/process-metadata', methods=['POST'])
