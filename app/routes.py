@@ -10,6 +10,9 @@ main = Blueprint('main', __name__)
 UPLOAD_FOLDER = "uploads/audio"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
+METADATA_FOLDER = "/uploads/audio/metadata"
+os.makedirs(METADATA_FOLDER, exist_ok=True)
+
 @main.route('/')
 def index():
     return render_template('index.html')
@@ -46,22 +49,20 @@ def metadata_form():
     return render_template('audio/metadata_form.html')
 
 # Step 3: Process Metadata
-@main.route('/process-metadata', methods=['POST'])
-def process_metadata():
-    metadata = {
-        "filename": request.form.get("filename"),
-        "instructor_name": request.form.get("instructor_name"),
-        "course_name": request.form.get("course_name"),
-        "course_code": request.form.get("course_code"),
-        "transcript_topic": request.form.get("transcript_topic"),
-        "audio_source": request.form.get("audio_source"),
-        "transcript_type": request.form.get("transcript_type"),
-    }
+@main.route('/submit_metadata', methods=['POST'])
+def submit_metadata():
+    data = request.form.to_dict()
+    file_name = data.get("file_name")
 
-    print("✅ Metadata Captured:", metadata)
-    flash(f"Metadata for {metadata['filename']} saved. Transcription will start soon!")
+    if not file_name:
+        return jsonify({"error": "Missing file name"}), 400
 
-    return redirect(url_for("main.upload_audio"))  # Or go to a transcription page
+    metadata_path = os.path.join(METADATA_FOLDER, f"{file_name}.json")
+    with open(metadata_path, "w") as f:
+        import json
+        json.dump(data, f, indent=4)
+
+    return jsonify({"message": "Metadata saved successfully!"})
 
 @main.route('/transcribe-video')
 def transcribe_video():
