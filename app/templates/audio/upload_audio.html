@@ -9,23 +9,91 @@
 <body>
 
     <div class="container">
-        <!-- Step 1: Upload Section -->
-        <div id="upload-section">
-            <h1>Upload Your Audio File</h1>
-            <p>Select an audio file to transcribe.</p>
+        <h1>Upload Your Audio File</h1>
+        <p>Select an audio file to upload.</p>
 
-            <form action="{{ url_for('main.upload_audio') }}" method="POST" enctype="multipart/form-data">
-                <label class="upload-box">
-                    Click to Upload Audio
-                    <input type="file" name="audio_file" accept="audio/*" required>
-                </label>
-                <div id="file-name" style="margin-top: 10px; font-size: 16px;"></div>
+        <form id="upload-form">
+            <label class="upload-box">
+                Click to Upload Audio
+                <input type="file" id="audioFile" name="audio_file" accept="audio/*" required hidden>
+            </label>
+            <div id="file-name" style="margin-top: 10px; font-size: 16px;"></div>
 
-                <button type="submit">Next → Add Metadata</button>
-            </form>
-        </div>
+            <!-- Progress bar -->
+            <div id="progress-section" class="progress-container" style="display:none;">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <p class="progress-text" id="progress-text"></p>
+
+            <button type="submit" id="submit-btn" disabled>Upload</button>
+        </form>
+
+        <h2 id="status" style="margin-top: 20px;"></h2>
     </div>
 
-    <script src="{{ url_for('static', filename='js/upload_audio.js') }}"></script>
+    <script>
+        const fileInput = document.getElementById('audioFile');
+        const fileNameDisplay = document.getElementById('file-name');
+        const progressBar = document.getElementById('progress-bar');
+        const progressSection = document.getElementById('progress-section');
+        const progressText = document.getElementById('progress-text');
+        const submitBtn = document.getElementById('submit-btn');
+        const statusText = document.getElementById('status');
+
+        fileInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            // Validate audio file
+            if (!file.type.startsWith('audio/')) {
+                alert("Please select a valid audio file!");
+                return;
+            }
+
+            fileNameDisplay.innerText = `Selected: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
+            submitBtn.disabled = false;
+        });
+
+        document.getElementById('upload-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const file = fileInput.files[0];
+            if (!file) return;
+
+            const formData = new FormData();
+            formData.append("audio_file", file);
+
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "{{ url_for('main.upload_audio') }}", true);
+
+            // Show progress section
+            progressSection.style.display = "block";
+
+            // Track upload progress
+            xhr.upload.addEventListener("progress", function(event) {
+                if (event.lengthComputable) {
+                    let percent = Math.round((event.loaded / event.total) * 100);
+                    progressBar.style.width = percent + "%";
+                    progressText.innerText = `Uploading... ${percent}%`;
+
+                    if (percent === 100) {
+                        progressText.innerText = "Processing file...";
+                    }
+                }
+            });
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    statusText.innerText = "Upload complete!";
+                } else {
+                    alert("Upload failed. Please try again.");
+                }
+            };
+
+            xhr.send(formData);
+        });
+    </script>
+
 </body>
 </html>
