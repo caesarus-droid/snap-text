@@ -45,3 +45,9 @@ pytube  # Download YouTube videos
 
 # Async Operations (if needed)
 aiohttp
+
+# Add these to your existing requirements
+openai-whisper
+python-docx
+ffmpeg-python
+yt-dlp

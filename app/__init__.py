@@ -1,9 +1,18 @@
 from flask import Flask
 from flask_dotenv import DotEnv
+from .config import config
+from .utils import setup_logger, ensure_folder_exists
 import os
+from .services import init_services
 
-def create_app():
+def create_app(config_name='default'):
     app = Flask(__name__)
+    
+    # Load config
+    app.config.from_object(config[config_name])
+    
+    # Setup logging
+    setup_logger()
     
     try:
         # Load environment variables from .env file
@@ -16,14 +25,18 @@ def create_app():
     except Exception as e:
         app.logger.error(f'Error loading .env file: {str(e)}')
 
-    # Create 'uploads/' directory if it doesn't exist
-    upload_folder = os.path.join(os.getcwd(), 'uploads')  # Full path to 'uploads/'
-    if not os.path.exists(upload_folder):
-        os.makedirs(upload_folder)  # Create the directory
+    # Ensure required directories exist
+    ensure_folder_exists(app.config['UPLOAD_FOLDER'])
+    ensure_folder_exists(os.path.join(app.config['UPLOAD_FOLDER'], 'audio'))
+    ensure_folder_exists(os.path.join(app.config['UPLOAD_FOLDER'], 'video'))
+    ensure_folder_exists(os.path.join(app.config['UPLOAD_FOLDER'], 'metadata'))
 
-    # Configure Flask upload folder
-    app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'super-secret-key')
-    app.config['UPLOAD_FOLDER'] = upload_folder  # Set the upload folder
+    try:
+        # Initialize services
+        init_services(app)
+    except Exception as e:
+        app.logger.error(f"Failed to initialize services: {str(e)}")
+        raise
 
     try:
         # Register Blueprints

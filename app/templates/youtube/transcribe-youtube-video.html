@@ -3,23 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transcribe Video</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Transcribe YouTube Video</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/transcribe_form.css') }}">
 </head>
 <body>
-
     <div class="container">
-        <h1>Upload Your Video File</h1>
-        <p>Select a video file to transcribe.</p>
+        <h1>Transcribe YouTube Video</h1>
+        <p>Enter a YouTube URL to transcribe the audio.</p>
 
-        <form action="{{ url_for('main.transcribe_video') }}" method="POST" enctype="multipart/form-data">
-            <label class="upload-box">
-                Click to Upload Video
-                <input type="file" name="file" accept="video/*" required>
-            </label><br>
-            <button type="submit">Transcribe Now</button>
+        <form id="transcription-form" method="POST">
+            <div class="form-group">
+                <label for="youtube_url">YouTube URL:</label>
+                <input type="url" id="youtube_url" name="youtube_url" required 
+                       placeholder="https://www.youtube.com/watch?v=...">
+            </div>
+            
+            <div class="form-group">
+                <label for="course_code">Course Code (optional):</label>
+                <input type="text" id="course_code" name="course_code">
+            </div>
+            
+            <div class="form-group">
+                <label for="course_name">Course Name (optional):</label>
+                <input type="text" id="course_name" name="course_name">
+            </div>
+            
+            <div class="form-group">
+                <label for="author">Author (optional):</label>
+                <input type="text" id="author" name="author">
+            </div>
+            
+            <button type="submit">Transcribe</button>
         </form>
+        
+        <div id="progress" style="display: none;">
+            <div class="progress-bar"></div>
+            <p id="status">Processing YouTube video... This may take a few minutes.</p>
+        </div>
     </div>
-
+    
+    <script>
+        document.getElementById('transcription-form').addEventListener('submit', function(e) {
+            this.style.display = 'none';
+            document.getElementById('progress').style.display = 'block';
+        });
+    </script>
 </body>
 </html>
