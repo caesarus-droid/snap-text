@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}Processing Transcription - Step 3{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="form-container">
+        <h2>Audio Transcription</h2>
+        
+        <div class="step-indicator">
+            <div class="step completed">
+                <div class="step-number">1</div>
+                <div class="step-label">Upload</div>
+            </div>
+            <div class="step completed">
+                <div class="step-number">2</div>
+                <div class="step-label">Metadata</div>
+            </div>
+            <div class="step active">
+                <div class="step-number">3</div>
+                <div class="step-label">Processing</div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-label">Result</div>
+            </div>
+        </div>
+        
+        <div class="progress-indicator">
+            <div class="spinner"></div>
+            <p id="status-message">Initializing transcription process...</p>
+            <div class="progress">
+                <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%"></div>
+            </div>
+        </div>
+        
+        <div id="result-container" style="display: none;">
+            <div class="success-message">
+                <h3>Transcription Complete!</h3>
+                <p>Your transcript has been successfully generated.</p>
+                <a id="download-link" href="#" class="btn btn-success">Download Transcript</a>
+                <a href="{{ url_for('main.transcribe') }}" class="btn btn-primary">Start New Transcription</a>
+            </div>
+        </div>
+        
+        <div id="error-container" style="display: none;">
+            <div class="error-message">
+                <h3>Transcription Failed</h3>
+                <p id="error-message"></p>
+                <a href="{{ url_for('main.transcribe') }}" class="btn btn-primary">Try Again</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Convert metadata to JSON for passing to the AJAX request
+    const metadata = {{ metadata|tojson }};
+    const filename = "{{ filename }}";
+    
+    // Start processing when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        processTranscription();
+    });
+    
+    function processTranscription() {
+        document.getElementById('status-message').textContent = "Processing transcription...";
+        
+        // Make AJAX request to process endpoint
+        fetch("{{ url_for('main.transcribe', step='result') }}?filename=" + encodeURIComponent(filename) + "&metadata=" + encodeURIComponent(JSON.stringify(metadata)))
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    showError(data.error);
+                } else {
+                    showSuccess(data.download_url, data.filename);
+                }
+            })
+            .catch(error => {
+                showError("An error occurred during processing: " + error);
+            });
+    }
+    
+    function showSuccess(downloadUrl, filename) {
+        document.querySelector('.processing-status').style.display = 'none';
+        document.getElementById('result-container').style.display = 'block';
+        
+        const downloadLink = document.getElementById('download-link');
+        downloadLink.href = downloadUrl;
+        downloadLink.setAttribute('download', filename);
+    }
+    
+    function showError(message) {
+        document.querySelector('.processing-status').style.display = 'none';
+        document.getElementById('error-container').style.display = 'block';
+        document.getElementById('error-message').textContent = message;
+    }
+</script>
+{% endblock %} 

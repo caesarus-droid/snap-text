@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block title %}Add YouTube Metadata - Step 2{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="form-container">
+        <h2>YouTube Video Transcription</h2>
+        
+        <div class="step-indicator">
+            <div class="step completed">
+                <div class="step-number">1</div>
+                <div class="step-label">URL</div>
+            </div>
+            <div class="step active">
+                <div class="step-number">2</div>
+                <div class="step-label">Metadata</div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-label">Download</div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-label">Processing</div>
+            </div>
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-label">Result</div>
+            </div>
+        </div>
+        
+        <div class="youtube-preview">
+            <h3>Selected Video:</h3>
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ video_id }}" allowfullscreen></iframe>
+            </div>
+        </div>
+        
+        <form action="{{ url_for('main.transcribe_youtube_video', step='download') }}" method="post">
+            <input type="hidden" name="youtube_url" value="{{ youtube_url }}">
+            <input type="hidden" name="video_id" value="{{ video_id }}">
+            
+            <div class="form-group">
+                <label for="course_code">Course Code:</label>
+                <input type="text" id="course_code" name="course_code" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="course_name">Course Name:</label>
+                <input type="text" id="course_name" name="course_name" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="week_no">Week Number:</label>
+                <input type="number" id="week_no" name="week_no" class="form-control" min="1" max="52" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="transcript_type">Transcript Type:</label>
+                <select id="transcript_type" name="transcript_type" class="form-control">
+                    <option value="YouTube Video">YouTube Video</option>
+                    <option value="Lecture">Lecture</option>
+                    <option value="Tutorial">Tutorial</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="part">Part (optional):</label>
+                <input type="text" id="part" name="part" class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <label for="week_topic">Week Topic:</label>
+                <input type="text" id="week_topic" name="week_topic" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="author">Author:</label>
+                <input type="text" id="author" name="author" class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <label for="keywords">Keywords (comma separated):</label>
+                <input type="text" id="keywords" name="keywords" class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <label for="comments">Comments:</label>
+                <textarea id="comments" name="comments" class="form-control" rows="3"></textarea>
+            </div>
+            
+            <div class="form-actions">
+                <a href="{{ url_for('main.transcribe_youtube_video') }}" class="btn btn-secondary">Back</a>
+                <button type="submit" class="btn btn-primary">Next: Download Video</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %} 

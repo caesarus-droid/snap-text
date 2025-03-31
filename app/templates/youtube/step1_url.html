@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Enter YouTube URL - Step 1{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="form-container">
+        <h2>YouTube Video Transcription</h2>
+        
+        <div class="step-indicator">
+            <div class="step active">
+                <div class="step-number">1</div>
+                <div class="step-label">URL</div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-label">Metadata</div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-label">Download</div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-label">Processing</div>
+            </div>
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-label">Result</div>
+            </div>
+        </div>
+        
+        <form action="{{ url_for('main.transcribe_youtube_video', step='metadata') }}" method="post">
+            <div class="form-group">
+                <label for="youtube_url">YouTube Video URL:</label>
+                <input type="url" id="youtube_url" name="youtube_url" class="form-control" 
+                       placeholder="https://www.youtube.com/watch?v=..." required>
+                <small>Enter the full URL of the YouTube video you want to transcribe</small>
+            </div>
+            
+            <div class="form-actions">
+                <a href="{{ url_for('main.index') }}" class="btn btn-secondary">Cancel</a>
+                <button type="submit" class="btn btn-primary">Next: Add Metadata</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %} 

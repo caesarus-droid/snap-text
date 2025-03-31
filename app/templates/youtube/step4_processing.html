@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block title %}Processing YouTube Transcription - Step 4{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="form-container">
+        <h2>YouTube Video Transcription</h2>
+        
+        <div class="step-indicator">
+            <div class="step completed">
+                <div class="step-number">1</div>
+                <div class="step-label">URL</div>
+            </div>
+            <div class="step completed">
+                <div class="step-number">2</div>
+                <div class="step-label">Metadata</div>
+            </div>
+            <div class="step completed">
+                <div class="step-number">3</div>
+                <div class="step-label">Download</div>
+            </div>
+            <div class="step active">
+                <div class="step-number">4</div>
+                <div class="step-label">Processing</div>
+            </div>
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-label">Result</div>
+            </div>
+        </div>
+        
+        <div class="processing-status">
+            <div class="spinner"></div>
+            <p id="status-message">Downloading YouTube audio...</p>
+            <div class="progress">
+                <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%"></div>
+            </div>
+        </div>
+        
+        <div id="result-container" style="display: none;">
+            <div class="success-message">
+                <h3>Transcription Complete!</h3>
+                <p>Your transcript has been successfully generated.</p>
+                <p id="video-title"></p>
+                <a id="download-link" href="#" class="btn btn-success">Download Transcript</a>
+                <a href="{{ url_for('main.transcribe_youtube_video') }}" class="btn btn-primary">Start New Transcription</a>
+            </div>
+        </div>
+        
+        <div id="error-container" style="display: none;">
+            <div class="error-message">
+                <h3>Transcription Failed</h3>
+                <p id="error-message"></p>
+                <a href="{{ url_for('main.transcribe_youtube_video') }}" class="btn btn-primary">Try Again</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Get parameters for processing
+    const youtube_url = "{{ youtube_url }}";
+    const video_id = "{{ video_id }}";
+    const metadata = {{ metadata|tojson }};
+    
+    // Start processing when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        processYouTubeTranscription();
+    });
+    
+    function updateStatus(message, progress) {
+        document.getElementById('status-message').textContent = message;
+        if (progress !== undefined) {
+            document.getElementById('progress-bar').style.width = progress + '%';
+        }
+    }
+    
+    function processYouTubeTranscription() {
+        updateStatus("Downloading YouTube audio...", 10);
+        
+        // Make AJAX request to process endpoint
+        fetch("{{ url_for('main.transcribe_youtube_video', step='result') }}?youtube_url=" + 
+              encodeURIComponent(youtube_url) + 
+              "&video_id=" + encodeURIComponent(video_id) + 
+              "&metadata=" + encodeURIComponent(JSON.stringify(metadata)))
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    showError(data.error);
+                } else {
+                    showSuccess(data.download_url, data.filename, data.video_title);
+                }
+            })
+            .catch(error => {
+                showError("An error occurred during processing: " + error);
+            });
+    }
+    
+    function showSuccess(downloadUrl, filename, videoTitle) {
+        document.querySelector('.processing-status').style.display = 'none';
+        document.getElementById('result-container').style.display = 'block';
+        
+        if (videoTitle) {
+            document.getElementById('video-title').textContent = "Video: " + videoTitle;
+        }
+        
+        const downloadLink = document.getElementById('download-link');
+        downloadLink.href = downloadUrl;
+        downloadLink.setAttribute('download', filename);
+    }
+    
+    function showError(message) {
+        document.querySelector('.processing-status').style.display = 'none';
+        document.getElementById('error-container').style.display = 'block';
+        document.getElementById('error-message').textContent = message;
+    }
+</script>
+{% endblock %} 

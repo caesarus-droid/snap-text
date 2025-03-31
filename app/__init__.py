@@ -8,8 +8,25 @@ from .services import init_services
 def create_app(config_name='default'):
     app = Flask(__name__)
     
-    # Load config
+    # Configuration
     app.config.from_object(config[config_name])
+    
+    # Make sure UPLOAD_FOLDER is defined
+    if not app.config.get('UPLOAD_FOLDER'):
+        app.config['UPLOAD_FOLDER'] = os.path.join(os.getcwd(), 'uploads')
+        
+    # Create all necessary upload directories
+    upload_dirs = [
+        app.config['UPLOAD_FOLDER'],
+        os.path.join(app.config['UPLOAD_FOLDER'], 'audio'),
+        os.path.join(app.config['UPLOAD_FOLDER'], 'video'),
+        os.path.join(app.config['UPLOAD_FOLDER'], 'temp'),
+        os.path.join(app.config['UPLOAD_FOLDER'], 'transcripts'),
+        os.path.join(app.config['UPLOAD_FOLDER'], 'metadata')
+    ]
+    
+    for directory in upload_dirs:
+        os.makedirs(directory, exist_ok=True)
     
     # Setup logging
     setup_logger()

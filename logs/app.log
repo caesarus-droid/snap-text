@@ -1,0 +1,181 @@
+2025-03-31 20:41:35,961 - app - ERROR - Failed to initialize transcription service: Working outside of application context.
+
+This typically means that you attempted to use functionality that needed
+the current application. To solve this, set up an application context
+with app.app_context(). See the documentation for more information.
+2025-03-31 20:41:35,961 - app - ERROR - Failed to initialize services: Working outside of application context.
+
+This typically means that you attempted to use functionality that needed
+the current application. To solve this, set up an application context
+with app.app_context(). See the documentation for more information.
+2025-03-31 20:42:26,351 - app - INFO - Transcription service initialized (model will be loaded on demand)
+2025-03-31 20:42:26,351 - app - INFO - Services initialized successfully
+2025-03-31 20:42:26,412 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2025-03-31 20:42:26,412 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-31 20:42:26,418 - werkzeug - INFO -  * Restarting with stat
+2025-03-31 20:42:28,038 - app - INFO - Transcription service initialized (model will be loaded on demand)
+2025-03-31 20:42:28,038 - app - INFO - Services initialized successfully
+2025-03-31 20:42:28,038 - werkzeug - WARNING -  * Debugger is active!
+2025-03-31 20:42:28,050 - werkzeug - INFO -  * Debugger PIN: 762-924-020
+2025-03-31 20:42:34,527 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 20:42:34] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-03-31 20:42:34,742 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 20:42:34] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-03-31 20:42:34,906 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 20:42:34] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-03-31 20:42:34,954 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 20:42:34] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=WoieBJjVGeXtts6sGxg8 HTTP/1.1" 200 -
+2025-03-31 20:42:35,398 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 20:42:35] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-03-31 20:44:07,561 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 20:44:07] "GET / HTTP/1.1" 200 -
+2025-03-31 20:44:07,881 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 20:44:07] "GET /static/css/homepage.css HTTP/1.1" 200 -
+2025-03-31 20:44:07,905 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 20:44:07] "[33mGET /static/images/transcribe-icon.png HTTP/1.1[0m" 404 -
+2025-03-31 20:44:13,557 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 20:44:13] "GET /transcribe HTTP/1.1" 200 -
+2025-03-31 20:44:13,898 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 20:44:13] "GET /static/css/transcribe_form.css HTTP/1.1" 200 -
+2025-03-31 20:44:13,930 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 20:44:13] "GET /static/js/transcribe.js HTTP/1.1" 200 -
+2025-03-31 20:44:23,001 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 20:44:23] "GET /transcribe-video HTTP/1.1" 200 -
+2025-03-31 20:44:23,223 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 20:44:23] "[33mGET /style.css HTTP/1.1[0m" 404 -
+2025-03-31 20:44:27,931 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 20:44:27] "GET /transcribe-youtube-video HTTP/1.1" 200 -
+2025-03-31 20:44:28,188 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 20:44:28] "[36mGET /static/css/transcribe_form.css HTTP/1.1[0m" 304 -
+2025-03-31 20:44:39,311 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 20:44:39] "[31m[1mPOST /transcribe-youtube-video HTTP/1.1[0m" 405 -
+2025-03-31 20:45:42,586 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 20:45:42] "GET / HTTP/1.1" 200 -
+2025-03-31 20:45:42,842 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 20:45:42] "[36mGET /static/css/homepage.css HTTP/1.1[0m" 304 -
+2025-03-31 20:45:57,241 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 20:45:57] "GET /transcribe HTTP/1.1" 200 -
+2025-03-31 20:45:57,588 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 20:45:57] "[36mGET /static/css/transcribe_form.css HTTP/1.1[0m" 304 -
+2025-03-31 20:45:57,588 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 20:45:57] "[36mGET /static/js/transcribe.js HTTP/1.1[0m" 304 -
+2025-03-31 20:46:26,425 - app - INFO - Processing file: C:\Users\CAESARUS\Documents\edtech\snap-text\uploads\audio\W1_-_Overview_Video-converted.mp3
+2025-03-31 22:25:44,730 - app - INFO - Transcription service initialized (model will be loaded on demand)
+2025-03-31 22:25:44,730 - app - INFO - Services initialized successfully
+2025-03-31 22:25:44,799 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2025-03-31 22:25:44,799 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-31 22:25:44,801 - werkzeug - INFO -  * Restarting with stat
+2025-03-31 22:25:46,368 - app - INFO - Transcription service initialized (model will be loaded on demand)
+2025-03-31 22:25:46,368 - app - INFO - Services initialized successfully
+2025-03-31 22:25:46,390 - werkzeug - WARNING -  * Debugger is active!
+2025-03-31 22:25:46,400 - werkzeug - INFO -  * Debugger PIN: 762-924-020
+2025-03-31 22:26:09,783 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:26:09] "GET /transcribe HTTP/1.1" 200 -
+2025-03-31 22:26:10,078 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:26:10] "[36mGET /static/css/transcribe_form.css HTTP/1.1[0m" 304 -
+2025-03-31 22:26:10,150 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:26:10] "[36mGET /static/js/transcribe.js HTTP/1.1[0m" 304 -
+2025-03-31 22:26:19,460 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:26:19] "GET /transcribe-youtube-video HTTP/1.1" 200 -
+2025-03-31 22:26:19,803 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:26:19] "[36mGET /static/css/transcribe_form.css HTTP/1.1[0m" 304 -
+2025-03-31 22:26:23,187 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:26:23] "GET /transcribe-video HTTP/1.1" 200 -
+2025-03-31 22:26:23,525 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:26:23] "[33mGET /style.css HTTP/1.1[0m" 404 -
+2025-03-31 22:26:28,192 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:26:28] "GET /transcribe HTTP/1.1" 200 -
+2025-03-31 22:26:28,529 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:26:28] "[36mGET /static/css/transcribe_form.css HTTP/1.1[0m" 304 -
+2025-03-31 22:26:28,530 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:26:28] "[36mGET /static/js/transcribe.js HTTP/1.1[0m" 304 -
+2025-03-31 22:29:14,245 - werkzeug - INFO -  * Detected change in 'C:\\Users\\CAESARUS\\Documents\\edtech\\snap-text\\app\\routes.py', reloading
+2025-03-31 22:29:14,553 - werkzeug - INFO -  * Restarting with stat
+2025-03-31 22:29:16,939 - app - INFO - Transcription service initialized (model will be loaded on demand)
+2025-03-31 22:29:16,939 - app - INFO - Services initialized successfully
+2025-03-31 22:29:16,955 - werkzeug - WARNING -  * Debugger is active!
+2025-03-31 22:29:16,970 - werkzeug - INFO -  * Debugger PIN: 762-924-020
+2025-03-31 22:29:20,472 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:29:20] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-03-31 22:29:20,723 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:29:20] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-03-31 22:29:20,973 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:29:20] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-03-31 22:29:21,000 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:29:21] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=0fJAOx0Rp2lrhb1YFUUE HTTP/1.1" 200 -
+2025-03-31 22:29:21,427 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:29:21] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-03-31 22:30:38,272 - werkzeug - INFO -  * Detected change in 'C:\\Users\\CAESARUS\\Documents\\edtech\\snap-text\\app\\routes.py', reloading
+2025-03-31 22:30:38,605 - werkzeug - INFO -  * Restarting with stat
+2025-03-31 22:30:40,960 - app - INFO - Transcription service initialized (model will be loaded on demand)
+2025-03-31 22:30:40,961 - app - INFO - Services initialized successfully
+2025-03-31 22:30:40,977 - werkzeug - WARNING -  * Debugger is active!
+2025-03-31 22:30:40,979 - werkzeug - INFO -  * Debugger PIN: 762-924-020
+2025-03-31 22:30:42,576 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:30:42] "GET / HTTP/1.1" 200 -
+2025-03-31 22:30:42,848 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:30:42] "[36mGET /static/css/homepage.css HTTP/1.1[0m" 304 -
+2025-03-31 22:30:52,682 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:30:52] "GET /transcribe HTTP/1.1" 200 -
+2025-03-31 22:30:58,105 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:30:58] "GET /transcribe HTTP/1.1" 200 -
+2025-03-31 22:33:56,714 - werkzeug - INFO -  * Detected change in 'C:\\Users\\CAESARUS\\Documents\\edtech\\snap-text\\app\\routes.py', reloading
+2025-03-31 22:33:57,068 - werkzeug - INFO -  * Restarting with stat
+2025-03-31 22:33:59,147 - app - INFO - Transcription service initialized (model will be loaded on demand)
+2025-03-31 22:33:59,147 - app - INFO - Services initialized successfully
+2025-03-31 22:33:59,162 - werkzeug - WARNING -  * Debugger is active!
+2025-03-31 22:33:59,164 - werkzeug - INFO -  * Debugger PIN: 762-924-020
+2025-03-31 22:34:02,368 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:34:02] "GET / HTTP/1.1" 200 -
+2025-03-31 22:34:02,686 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:34:02] "[36mGET /static/css/homepage.css HTTP/1.1[0m" 304 -
+2025-03-31 22:34:04,514 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:34:04] "GET /transcribe-video HTTP/1.1" 200 -
+2025-03-31 22:34:13,902 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:34:13] "GET /transcribe HTTP/1.1" 200 -
+2025-03-31 22:39:14,422 - werkzeug - INFO -  * Detected change in 'C:\\Users\\CAESARUS\\Documents\\edtech\\snap-text\\app\\routes.py', reloading
+2025-03-31 22:39:14,758 - werkzeug - INFO -  * Restarting with stat
+2025-03-31 22:39:16,998 - app - INFO - Transcription service initialized (model will be loaded on demand)
+2025-03-31 22:39:16,998 - app - INFO - Services initialized successfully
+2025-03-31 22:39:17,020 - werkzeug - WARNING -  * Debugger is active!
+2025-03-31 22:39:17,023 - werkzeug - INFO -  * Debugger PIN: 762-924-020
+2025-03-31 22:39:21,278 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:39:21] "GET / HTTP/1.1" 200 -
+2025-03-31 22:39:21,606 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:39:21] "[36mGET /static/css/homepage.css HTTP/1.1[0m" 304 -
+2025-03-31 22:39:23,593 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:39:23] "GET /transcribe HTTP/1.1" 200 -
+2025-03-31 22:39:27,370 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:39:27] "GET /transcribe-video HTTP/1.1" 200 -
+2025-03-31 22:39:30,926 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:39:30] "GET /transcribe-youtube-video HTTP/1.1" 200 -
+2025-03-31 22:41:15,487 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:41:15] "GET / HTTP/1.1" 200 -
+2025-03-31 22:41:15,766 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:41:15] "[36mGET /static/css/homepage.css HTTP/1.1[0m" 304 -
+2025-03-31 22:41:16,942 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:41:16] "GET /transcribe HTTP/1.1" 200 -
+2025-03-31 22:41:20,092 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:41:20] "GET /transcribe-video HTTP/1.1" 200 -
+2025-03-31 22:41:23,006 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:41:23] "GET /transcribe-youtube-video HTTP/1.1" 200 -
+2025-03-31 22:41:29,911 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:41:29] "GET / HTTP/1.1" 200 -
+2025-03-31 22:41:30,164 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:41:30] "[36mGET /static/css/homepage.css HTTP/1.1[0m" 304 -
+2025-03-31 22:41:40,566 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:41:40] "GET /transcribe HTTP/1.1" 200 -
+2025-03-31 22:44:56,851 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:44:56] "GET /transcribe HTTP/1.1" 200 -
+2025-03-31 22:45:00,993 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:45:00] "GET /transcribe HTTP/1.1" 200 -
+2025-03-31 22:45:08,550 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:45:08] "GET /transcribe HTTP/1.1" 200 -
+2025-03-31 22:46:31,431 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:46:31] "GET /transcribe HTTP/1.1" 200 -
+2025-03-31 22:47:14,900 - werkzeug - INFO -  * Detected change in 'C:\\Users\\CAESARUS\\Documents\\edtech\\snap-text\\app\\routes.py', reloading
+2025-03-31 22:47:15,648 - werkzeug - INFO -  * Restarting with stat
+2025-03-31 22:47:18,711 - app - INFO - Transcription service initialized (model will be loaded on demand)
+2025-03-31 22:47:18,711 - app - INFO - Services initialized successfully
+2025-03-31 22:49:30,847 - app - INFO - Transcription service initialized (model will be loaded on demand)
+2025-03-31 22:49:30,847 - app - INFO - Services initialized successfully
+2025-03-31 22:49:30,894 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2025-03-31 22:49:30,894 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-31 22:49:30,894 - werkzeug - INFO -  * Restarting with stat
+2025-03-31 22:49:33,038 - app - INFO - Transcription service initialized (model will be loaded on demand)
+2025-03-31 22:49:33,038 - app - INFO - Services initialized successfully
+2025-03-31 22:49:33,053 - werkzeug - WARNING -  * Debugger is active!
+2025-03-31 22:49:33,070 - werkzeug - INFO -  * Debugger PIN: 762-924-020
+2025-03-31 22:49:35,456 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:49:35] "GET / HTTP/1.1" 200 -
+2025-03-31 22:49:35,782 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:49:35] "[36mGET /static/css/homepage.css HTTP/1.1[0m" 304 -
+2025-03-31 22:49:36,976 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:49:36] "GET /transcribe HTTP/1.1" 200 -
+2025-03-31 22:49:41,100 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:49:41] "GET /transcribe-video HTTP/1.1" 200 -
+2025-03-31 22:49:44,371 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:49:44] "GET /transcribe-youtube-video HTTP/1.1" 200 -
+2025-03-31 22:52:19,766 - werkzeug - INFO -  * Detected change in 'C:\\Users\\CAESARUS\\Documents\\edtech\\snap-text\\app\\routes.py', reloading
+2025-03-31 22:52:20,091 - werkzeug - INFO -  * Restarting with stat
+2025-03-31 22:52:22,141 - app - INFO - Transcription service initialized (model will be loaded on demand)
+2025-03-31 22:52:22,141 - app - INFO - Services initialized successfully
+2025-03-31 22:52:22,157 - werkzeug - WARNING -  * Debugger is active!
+2025-03-31 22:52:22,165 - werkzeug - INFO -  * Debugger PIN: 762-924-020
+2025-03-31 22:52:25,168 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:52:25] "GET / HTTP/1.1" 200 -
+2025-03-31 22:52:25,527 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:52:25] "[36mGET /static/css/homepage.css HTTP/1.1[0m" 304 -
+2025-03-31 22:52:28,553 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:52:28] "GET /transcribe HTTP/1.1" 200 -
+2025-03-31 22:53:34,485 - werkzeug - INFO -  * Detected change in 'C:\\Users\\CAESARUS\\Documents\\edtech\\snap-text\\app\\__init__.py', reloading
+2025-03-31 22:53:34,860 - werkzeug - INFO -  * Restarting with stat
+2025-03-31 22:53:36,476 - app - INFO - Transcription service initialized (model will be loaded on demand)
+2025-03-31 22:53:36,476 - app - INFO - Services initialized successfully
+2025-03-31 22:54:24,026 - app - INFO - Transcription service initialized (model will be loaded on demand)
+2025-03-31 22:54:24,026 - app - INFO - Services initialized successfully
+2025-03-31 22:54:24,050 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+2025-03-31 22:54:24,050 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-03-31 22:54:24,056 - werkzeug - INFO -  * Restarting with stat
+2025-03-31 22:54:25,734 - app - INFO - Transcription service initialized (model will be loaded on demand)
+2025-03-31 22:54:25,734 - app - INFO - Services initialized successfully
+2025-03-31 22:54:25,751 - werkzeug - WARNING -  * Debugger is active!
+2025-03-31 22:54:25,757 - werkzeug - INFO -  * Debugger PIN: 762-924-020
+2025-03-31 22:54:29,834 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:54:29] "GET /transcribe HTTP/1.1" 200 -
+2025-03-31 22:54:30,144 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:54:30] "GET /static/css/styles.css HTTP/1.1" 200 -
+2025-03-31 22:54:42,356 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:54:42] "POST /transcribe?step=metadata HTTP/1.1" 200 -
+2025-03-31 22:54:42,703 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:54:42] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-03-31 22:55:17,833 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:55:17] "POST /transcribe?step=process HTTP/1.1" 200 -
+2025-03-31 22:55:18,191 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:55:18] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-03-31 22:55:18,432 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:55:18] "[32mGET /transcribe?step=result?filename=W1_-_Overview_Video-converted.mp3&metadata={"author":"Sample%20Channel","comments":"l","course_code":"FF","course_name":"FFF","keywords":"kk","part":"k","platform":"AUDIO","transcript_type":"Lecture","week_no":"1","week_topic":"sd"} HTTP/1.1[0m" 302 -
+2025-03-31 22:55:18,515 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:55:18] "GET /transcribe HTTP/1.1" 200 -
+2025-03-31 22:56:31,475 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:56:31] "GET / HTTP/1.1" 200 -
+2025-03-31 22:56:31,721 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:56:31] "[36mGET /static/css/homepage.css HTTP/1.1[0m" 304 -
+2025-03-31 22:56:33,463 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:56:33] "GET /transcribe-video HTTP/1.1" 200 -
+2025-03-31 22:56:33,797 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:56:33] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-03-31 22:56:52,686 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:56:52] "GET /transcribe-youtube-video HTTP/1.1" 200 -
+2025-03-31 22:56:53,029 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:56:53] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-03-31 22:56:58,873 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:56:58] "POST /transcribe-youtube-video?step=metadata HTTP/1.1" 200 -
+2025-03-31 22:56:59,211 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 22:56:59] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-03-31 23:02:35,328 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 23:02:35] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-03-31 23:05:24,397 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 23:05:24] "POST /transcribe?step=process HTTP/1.1" 200 -
+2025-03-31 23:05:24,633 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 23:05:24] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-03-31 23:05:24,746 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 23:05:24] "[32mGET /transcribe?step=result?filename=W1_-_Overview_Video-converted.mp3&metadata={"author":"Sample%20Channel","comments":"l","course_code":"FF","course_name":"FFF","keywords":"kk","part":"k","platform":"AUDIO","transcript_type":"Lecture","week_no":"1","week_topic":"sd"} HTTP/1.1[0m" 302 -
+2025-03-31 23:05:24,962 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 23:05:24] "GET /transcribe HTTP/1.1" 200 -
+2025-03-31 23:05:31,337 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 23:05:31] "GET /transcribe HTTP/1.1" 200 -
+2025-03-31 23:05:31,682 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2025 23:05:31] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -

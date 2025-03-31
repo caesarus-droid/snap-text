@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Download YouTube Video - Step 3{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="form-container">
+        <h2>YouTube Video Transcription</h2>
+        
+        <div class="step-indicator">
+            <div class="step completed">
+                <div class="step-number">1</div>
+                <div class="step-label">URL</div>
+            </div>
+            <div class="step completed">
+                <div class="step-number">2</div>
+                <div class="step-label">Metadata</div>
+            </div>
+            <div class="step active">
+                <div class="step-number">3</div>
+                <div class="step-label">Download</div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-label">Processing</div>
+            </div>
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-label">Result</div>
+            </div>
+        </div>
+        
+        <div class="youtube-preview">
+            <h3>Selected Video:</h3>
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ video_id }}" allowfullscreen></iframe>
+            </div>
+        </div>
+        
+        <div class="download-info">
+            <p>We'll now download the audio from this YouTube video for transcription.</p>
+            <p>This may take a few moments depending on the length of the video.</p>
+        </div>
+        
+        <form action="{{ url_for('main.transcribe_youtube_video', step='process') }}" method="post">
+            <input type="hidden" name="youtube_url" value="{{ youtube_url }}">
+            <input type="hidden" name="video_id" value="{{ video_id }}">
+            <input type="hidden" name="metadata" value="{{ metadata|tojson }}">
+            
+            <div class="form-actions">
+                <a href="{{ url_for('main.transcribe_youtube_video', step='metadata') }}" class="btn btn-secondary">Back</a>
+                <button type="submit" class="btn btn-primary">Start Download & Processing</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %} 

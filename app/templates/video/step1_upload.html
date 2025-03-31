@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Upload Video - Step 1{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="form-container">
+        <h2>Video Transcription</h2>
+        
+        <div class="step-indicator">
+            <div class="step active">
+                <div class="step-number">1</div>
+                <div class="step-label">Upload</div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-label">Metadata</div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-label">Processing</div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-label">Result</div>
+            </div>
+        </div>
+        
+        <form action="{{ url_for('main.transcribe_video', step='metadata') }}" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file">Select Video File:</label>
+                <input type="file" id="file" name="file" accept=".mp4,.avi,.mov,.wmv,.flv" required>
+                <small>Supported formats: MP4, AVI, MOV, WMV, FLV</small>
+            </div>
+            
+            <div class="form-actions">
+                <a href="{{ url_for('main.index') }}" class="btn btn-secondary">Cancel</a>
+                <button type="submit" class="btn btn-primary">Next: Add Metadata</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %} 

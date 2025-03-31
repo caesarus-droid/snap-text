@@ -4,29 +4,53 @@ from docx.shared import Pt
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 import re
 import os
-from flask import current_app
 import torch
+import threading
 
 class TranscriptionService:
-    def __init__(self):
+    def __init__(self, app=None):
         # Check if CUDA is available for GPU acceleration
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
-        try:
-            self.model = whisper.load_model("medium", device=self.device)
-            current_app.logger.info(f"Whisper model loaded successfully on {self.device}")
-        except Exception as e:
-            current_app.logger.error(f"Failed to load Whisper model: {str(e)}")
-            raise
+        self.model = None
+        self.model_lock = threading.Lock()
+        self.app = app
+        
+        if app:
+            app.logger.info(f"Transcription service initialized (model will be loaded on demand)")
+    
+    def _log(self, message, level="info"):
+        """Log a message using the app logger if available"""
+        if self.app:
+            logger = getattr(self.app.logger, level)
+            logger(message)
+        else:
+            print(f"{level.upper()}: {message}")
+    
+    def _load_model(self):
+        """Load the Whisper model if not already loaded"""
+        with self.model_lock:
+            if self.model is None:
+                try:
+                    self._log(f"Loading Whisper model on {self.device}...")
+                    self.model = whisper.load_model("medium", device=self.device)
+                    self._log(f"Whisper model loaded successfully on {self.device}")
+                except Exception as e:
+                    self._log(f"Failed to load Whisper model: {str(e)}", "error")
+                    raise
     
     def transcribe_audio(self, audio_path, language='en'):
         """Transcribe audio file using Whisper"""
         try:
             # Log the transcription start
-            current_app.logger.info(f"Starting transcription of {audio_path}")
+            self._log(f"Starting transcription of {audio_path}")
             
             # Ensure the file exists
             if not os.path.exists(audio_path):
                 raise FileNotFoundError(f"Audio file not found: {audio_path}")
+            
+            # Load model if not already loaded
+            if self.model is None:
+                self._load_model()
             
             # Perform transcription
             result = self.model.transcribe(
@@ -35,11 +59,11 @@ class TranscriptionService:
                 fp16=torch.cuda.is_available()  # Use FP16 if on GPU
             )
             
-            current_app.logger.info(f"Transcription completed for {audio_path}")
+            self._log(f"Transcription completed for {audio_path}")
             return result['text'], None
             
         except Exception as e:
-            current_app.logger.error(f"Transcription error: {str(e)}")
+            self._log(f"Transcription error: {str(e)}", "error")
             return None, str(e)
     
     def create_transcript_document(self, transcription_text, metadata):
@@ -82,7 +106,7 @@ class TranscriptionService:
             return doc, None
             
         except Exception as e:
-            current_app.logger.error(f"Document creation error: {str(e)}")
+            self._log(f"Document creation error: {str(e)}", "error")
             return None, str(e)
     
     def _split_text_into_paragraphs(self, text, max_sentences=5):

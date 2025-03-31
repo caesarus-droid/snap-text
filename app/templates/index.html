@@ -36,25 +36,20 @@
 
     <!-- Features Section -->
     <div class="features" id="features">
-        <a href="{{ url_for('main.upload_audio') }}" class="feature-card">
-            <img src="https://cdn-icons-png.flaticon.com/512/724/724927.png" alt="Audio Icon">
-            <h2>Transcribe Audio</h2>
-            <p>Convert speech to text from audio files.</p>
+        <a href="{{ url_for('main.transcribe') }}" class="feature-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/84/84178.png" alt="Transcribe">
+            <h3>Transcribe Audio</h3>
+            <p>Convert speech to text from audio files with AI-powered transcription</p>
         </a>
         <a href="{{ url_for('main.transcribe_video') }}" class="feature-card">
             <img src="https://cdn-icons-png.flaticon.com/512/84/84179.png" alt="Video Icon">
-            <h2>Transcribe Panopto Video</h2>
-            <p>Extract text from video files with ease.</p>
+            <h3>Transcribe Panopto Video</h3>
+            <p>Extract text from educational video content</p>
         </a>
         <a href="{{ url_for('main.transcribe_youtube_video') }}" class="feature-card">
-            <img src="https://cdn-icons-png.flaticon.com/512/84/84177.png" alt="Video Icon">
-            <h2>Transcribe YouTube Video</h2>
-            <p>Extract text from video files with ease.</p>
-        </a>
-        <a href="{{ url_for('main.transcribe_form') }}" class="feature-card">
-            <img src="{{ url_for('static', filename='images/transcribe-icon.png') }}" alt="Transcribe">
-            <h3>Transcribe Media</h3>
-            <p>Convert audio and video to text with AI-powered transcription</p>
+            <img src="https://cdn-icons-png.flaticon.com/512/84/84177.png" alt="YouTube Icon">
+            <h3>Transcribe YouTube Video</h3>
+            <p>Generate transcripts from YouTube videos</p>
         </a>
     </div>
 
